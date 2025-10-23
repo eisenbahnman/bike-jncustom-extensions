@@ -1,75 +1,66 @@
-# Bike Extension Kit
+# BikeTags
 
-This kit is for building [Bike Outliner
-2](https://support.hogbaysoftware.com/c/bike/releases/24) extensions.
+Inline, hierarchical tags for Bike Outliner with colored chips, tag-based filtering, and a tags sidebar.
 
-Use extensions to customize and enhance the functionality of Bike. Extensions can add
-new commands, keybindings, views, styles, and more. Sensitive features are protected by a permission system.
+## Transparency
 
-## Screencasts
+>[!IMPORTANT]
+> This tagging extension was created with the use of AI end-to-end, including design, implementation, and this documentation.
 
-- [Setup & Build](https://vimeo.com/1089520938)
-- [Creating Extensions](https://vimeo.com/1089816472)
-- [App Context Extensions](https://vimeo.com/1089829088)
-- [DOM Context Extensions](https://vimeo.com/1089831661)
-- [Style Context Extensions](https://vimeo.com/1090188813)
+## What it does
 
-_Note_: These screencasts were recorded with an earlier version of the extension
-kit, a few details may have changed. For example, commands now take a
-CommandContext parameter.
+- Parse trailing `#tags` at the end of rows; supports multiple tags per row
+- Hierarchical tags with `/` (e.g., `#project/subtask`); ancestors are included automatically
+- Render tags as rounded chips; colors are stable per tag
+- Apply tags when you exit edit mode on a row or switch to another row
+- Provide a tags sidebar with parent/child nesting
+- Commands to apply styling, filter by the tag under the caret, clear the filter, and rebuild the sidebar
 
-## Setup
+## Usage
 
-First, install needed tools:
-
-- [`node.js`](https://nodejs.org) (require version 18 or later)
-- [`vscode`](https://code.visualstudio.com) (optional)
-- [`git`](https://git-scm.com) (optional)
-
-Next, download kit and install dependencies:
-
-```sh
-git clone https://github.com/jessegrosjean/bike-extension-kit.git
-cd bike-extension-kit
-node --version # 18 or later
-npm install
-```
-
-## Build & Install Extensions
-
-The kit folder structure looks like this:
+Type tags at the end of a row:
 
 ```
-bike-extension-kit
-├── api
-├── configs
-├── scripts
-├── src
-│ ├── extension1.bkext/
-│ ├── extension2.bkext/
-│ └── ...
+Do something important #this #that/nested
 ```
 
-Inside `src` there is a subfolder for each extension. These folders are
-independent–add and remove as needed. When you build, the extensions found in
-`src` are built and placed in `out/extensions`.
+Behavior:
+- Tags remain inline and serialize with your document; visuals don’t alter text
+- Tags apply on exit from edit mode or row changes (Esc, arrow navigation, etc.)
+- Filtering keeps rows that match the chosen tag or any of its descendants
 
-To build extensions:
+## Commands
 
-```sh
-npm run build
-```
+- BikeTags: Apply Tags (`biketags:apply-tags`)
+  - Scans the outline, applies tag chip styling, and persists computed tags
+- BikeTags: Filter by Tag at Caret (`biketags:filter-by-tag`)
+  - Filters to the tag under the caret (or last trailing tag on the row)
+- BikeTags: Clear Filter (`biketags:clear-filter`)
+  - Removes the temporary filter
+- BikeTags: Rebuild Sidebar (`biketags:rebuild-sidebar`)
+  - Rebuilds the tags sidebar from current document tags
 
-To install extensions:
+## Sidebar
 
-1. Open Bike's extensions folder: Bike > Extensions...
-2. Copy extensions from `out/extensions` to Bike's extensions folder
+- A “Tags” group appears in the sidebar; tags are listed and nested by hierarchy
+- Clicking a tag filters the outline to rows containing that tag or descendants
 
-For example move `out/extensions/d3.bkext` to Bike's extensions folder. You
-should see new d3 items appear in Bike's sidebar. To avoid this step you can set
-the `install` property in the extension's `manifest.json` to `true`. When you do
-this Bike automatically installs the extension each time you build.
+## Filtering notes
 
-## Next Steps
+- The filter attribute is `bt-filter` (legacy `data-bt-filter` mirrored for compatibility)
+- Computed tags are stored per row in `bt-tags` (legacy `data-bt-tags` mirrored)
 
-To learn more see [Creating Extensions](https://bikeguide.hogbaysoftware.com/bike-2-preview/customizing-bike/creating-extensions) in Bike's user guide.
+## Known limitation
+
+- Tags do not appear automatically in the sidebar on window open. Use the command “BikeTags: Rebuild Sidebar” to populate the list (it will then update as you apply tags while navigating rows).
+
+## Performance
+
+- Re-application is skipped when the computed tag set for a row hasn’t changed
+- Only trailing tags are parsed; this keeps scanning fast and avoids false positives
+
+## Palette
+
+- Colors are assigned via a stable hash across eight hues
+
+

@@ -16,6 +16,9 @@ Inline, hierarchical tags for Bike Outliner with colored chips, tag-based filter
 - Provide a tags sidebar with parent/child nesting
 - Commands to apply styling, filter by the tag under the caret, clear the filter, and rebuild the sidebar
 
+## Screenshots
+![Demo](/tagsdemo.png)
+
 ## Usage
 
 Type tags at the end of a row:
@@ -50,9 +53,10 @@ Behavior:
 - The filter attribute is `bt-filter` (legacy `data-bt-filter` mirrored for compatibility)
 - Computed tags are stored per row in `bt-tags` (legacy `data-bt-tags` mirrored)
 
-## Known limitation
+## Known limitations
 
-- Tags do not appear automatically in the sidebar on window open. Use the command “BikeTags: Rebuild Sidebar” to populate the list (it will then update as you apply tags while navigating rows).
+- Tags do not appear automatically in the sidebar on window open. Use the command “BikeTags: Rebuild Sidebar” to populate the list. You have to run this command anytime you add new tags and want to access them from the sidebar.
+- Although it supports `.bikemd` files, you may find your markdown files more polluted with extra data, especially if you use tags heavily (good news is that this is always at the end of the line).
 
 ## Performance
 

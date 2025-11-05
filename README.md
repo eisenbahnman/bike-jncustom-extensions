@@ -1,3 +1,8 @@
+# Custom extensions for Bike Outliner
+A collection of my custom extensions for Bike Outliner. Work in progress.
+
+1. [Bike Tags extension](#BikeTags)
+
 # BikeTags
 
 Inline, hierarchical tags for Bike Outliner with colored chips, tag-based filtering, and a tags sidebar.

@@ -8,6 +8,14 @@ This extension integrates with an Apple Shortcut to display links to all .bike f
 - Manual refresh command: `workspace:refresh`
 - Clickable links to open files directly from the sidebar
 
+## Issues
+
+- relies on Apple shortcut to work (not sure if there’s currently a better way)
+- obliterates clipboard if there’s no clipboard manager/history
+- doesn’t yet support sub-directories
+- for now, lists onlike .bike files
+- getting some strange glitches where extension is triggered with Bike in background, not sure if related to autosave or some other process
+
 ## Setup
 
 1. Create an Apple Shortcut named "list-bike-files" that:

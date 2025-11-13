@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/manifest.schema.json",
+  "id": "workspace",
+  "name": "Workspace Files",
+  "version": "1.0.0",
+  "api_version": "0.0.0",
+  "permissions": ["openURL", "clipboardRead", "clipboardWrite"],
+  "host_permissions": [],
+  "enabled": true,
+  "install": true
+}
+

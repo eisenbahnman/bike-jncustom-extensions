@@ -89,7 +89,7 @@ This extension integrates with an Apple Shortcut to display links to all .bike f
 - relies on Apple shortcut to work (not sure if there’s currently a better way)
 - obliterates clipboard if there’s no clipboard manager/history
 - doesn’t yet support sub-directories
-- for now, lists onlike .bike files
+- for now, lists only .bike files
 - getting some strange glitches where extension is triggered with Bike in background, not sure if related to autosave or some other process
 
 ## Screenshots

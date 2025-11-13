@@ -2,7 +2,7 @@
 A collection of my custom extensions for Bike Outliner. Work in progress.
 
 1. [Bike Tags extension](#BikeTags)
-2. [Workspace](#WorkspaceExtension)
+2. [Workspace Extension](#Workspace)
 
 # BikeTags
 
@@ -74,7 +74,7 @@ Behavior:
 - Colors are assigned via a stable hash across eight hues
 
 
-# Workspace Extension
+# Workspace
 
 This extension integrates with an Apple Shortcut to display links to all .bike files in your iCloud directory in the sidebar.
 
@@ -83,6 +83,9 @@ This extension integrates with an Apple Shortcut to display links to all .bike f
 - Automatically refreshes workspace file list when documents are opened
 - Manual refresh command: `workspace:refresh`
 - Clickable links to open files directly from the sidebar
+
+## Screenshots
+![Workspace example](/screenshots/workspace-demo.gif)
 
 ## Setup
 
